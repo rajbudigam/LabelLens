@@ -5,7 +5,7 @@ export default function NotFound() {
     <main className="space-y-6">
       <h1 className="text-3xl font-semibold">Page Not Found</h1>
       <p className="text-slate-400">
-        The page you're looking for doesn't exist.
+        The page you&apos;re looking for doesn&apos;t exist.
       </p>
       <Link 
         href="/"
