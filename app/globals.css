@@ -3,12 +3,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light;
-}
-
-body {
-  background-color: #ffffff;
-  color: #1f2937;
+  color-scheme: dark;
 }
 
 @media print {
