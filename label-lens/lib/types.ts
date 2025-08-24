@@ -5,6 +5,7 @@ export interface AdditiveRule {
   display: string;
   aliases: string[];
   severity: Severity;
+  category?: string;
   us: string;
   ca: string;
   eu: string;

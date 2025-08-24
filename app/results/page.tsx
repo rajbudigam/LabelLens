@@ -42,12 +42,36 @@ function ResultsContent() {
       const analysis: SavedAnalysis = {
         id: Date.now().toString(),
         inputText: ingredients,
-        additives: result.additives.hits,
-        allergens: result.allergens.hits,
+        tokens: result.c,
+        normalized: result.c,
         nova: result.nova,
+        additives: result.additives.hits.map(hit => ({
+          name: hit.display,
+          aliases: hit.aliases,
+          severity: hit.severity === 'med' ? 'medium' : hit.severity,
+          category: hit.category,
+          description: hit.explainer,
+          jurisdictionStatus: {}
+        })),
+        allergens: result.allergens.hits.map(hit => ({
+          name: hit.display,
+          category: 'allergen',
+          confidence: 1.0,
+          source: 'ingredient_analysis'
+        })),
+        jurisdictions: result.jrows.map(row => ({
+          region: row.key,
+          status: {
+            allowed: !row.us.includes('Banned') && !row.ca.includes('Banned') && !row.eu.includes('Banned'),
+            restricted: row.us.includes('limited') || row.ca.includes('limited') || row.eu.includes('limited'),
+            banned: row.us.includes('Banned') || row.ca.includes('Banned') || row.eu.includes('Banned')
+          },
+          notes: `US: ${row.us}, CA: ${row.ca}, EU: ${row.eu}`
+        })),
         score: result.score,
         createdAt: new Date().toISOString(),
-        title: `Analysis ${new Date().toLocaleDateString()}`
+        title: `Analysis ${new Date().toLocaleDateString()}`,
+        starred: false
       };
 
       const saved = localStorage.getItem('saved-analyses');

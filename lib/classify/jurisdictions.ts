@@ -64,12 +64,13 @@ const JURISDICTION_STATUS: Record<string, { us: string; ca: string; eu: string; 
 
 export function buildJurisdictionRows(additives: { hits: AdditiveHit[] }): JurisdictionRow[] {
   return additives.hits.map(h => {
-    const status = JURISDICTION_STATUS[h.key] || { us: "UNKNOWN", ca: "UNKNOWN", eu: "UNKNOWN" };
+    const status = JURISDICTION_STATUS[h.key.toLowerCase().replace(/[^a-z0-9]/g, '')] || 
+                  { us: "UNKNOWN", ca: "UNKNOWN", eu: "UNKNOWN" };
     return {
-      key: h.key,
-      display: h.display,
-      us: status.us,
-      ca: status.ca,
+      key: h.key, 
+      display: h.display, 
+      us: status.us, 
+      ca: status.ca, 
       eu: status.eu
     };
   });

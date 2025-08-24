@@ -8,6 +8,9 @@ export interface AdditiveRule {
   category: string;
   explainer: string;
   refUrl?: string;
+  us?: string;
+  ca?: string;
+  eu?: string;
 }
 
 export type AdditiveHit = AdditiveRule;
