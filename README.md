@@ -67,6 +67,56 @@ NEXT_PUBLIC_API_URL=http://localhost:3000/api
 NEXT_PUBLIC_APP_ENV=development
 ```
 
+## 🌐 Deployment
+
+### **Vercel Deployment (Recommended)**
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/rajbudigam/LabelLens)
+
+**Option 1: One-Click Deploy**
+1. Click the "Deploy with Vercel" button above
+2. Connect your GitHub account
+3. Deploy automatically
+
+**Option 2: Manual Setup**
+1. Go to [vercel.com](https://vercel.com)
+2. Sign up/Login with GitHub
+3. Click "New Project"
+4. Import `rajbudigam/LabelLens` repository
+5. Deploy (auto-detects Next.js settings)
+
+**Option 3: Vercel CLI**
+```bash
+# Install Vercel CLI
+npm i -g vercel
+
+# Login to Vercel
+vercel login
+
+# Deploy from repository root
+vercel
+
+# For production deployment
+vercel --prod
+```
+
+### **Alternative Deployments**
+
+**Netlify:**
+```bash
+# Build command: pnpm build
+# Publish directory: .next
+# Environment: Node.js 18.x
+```
+
+**Railway:**
+1. Connect GitHub repo at [railway.app](https://railway.app)
+2. Auto-deploy on push
+
+### **Live Demo**
+- **Production**: [https://labellens.vercel.app](https://labellens.vercel.app) *(will be available after deployment)*
+- **Staging**: [https://labellens-git-main.vercel.app](https://labellens-git-main.vercel.app)
+
 ## 🏃‍♂️ Quick Start
 
 1. **Basic Analysis**: Navigate to the home page and enter ingredients in the text area

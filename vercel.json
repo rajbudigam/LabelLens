@@ -1,0 +1,14 @@
+{
+  "name": "labellens",
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "regions": ["iad1"],
+  "env": {
+    "NEXT_PUBLIC_APP_ENV": "production"
+  }
+}
