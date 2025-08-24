@@ -1,0 +1,16 @@
+export const NOVA_MARKERS: { term: string; weight: number }[] = [
+  { term: "artificial flavor", weight: 3 },
+  { term: "natural flavor", weight: 2 },
+  { term: "flavor", weight: 1 },
+  { term: "maltodextrin", weight: 2 },
+  { term: "emulsifier", weight: 2 },
+  { term: "mono- and diglycerides", weight: 2 },
+  { term: "polysorbate", weight: 2 },
+  { term: "stabilizer", weight: 1 },
+  { term: "thickener", weight: 1 },
+  { term: "gelling agent", weight: 1 },
+  { term: "color", weight: 1 },
+  { term: "hydrogenated", weight: 3 },
+  { term: "modified starch", weight: 2 },
+  { term: "brominated vegetable oil", weight: 3 },
+];
