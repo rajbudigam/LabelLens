@@ -14,7 +14,6 @@ import { classifyAllergens } from "@/lib/classify/allergens";
 import { novaEstimate } from "@/lib/classify/nova";
 import { buildJurisdictionRows } from "@/lib/classify/jurisdictions";
 import { overallScore } from "@/lib/classify/score";
-import type { Analysis, SavedAnalysis } from "@/lib/store/types";
 
 function ResultsContent() {
   const sp = useSearchParams();
@@ -23,7 +22,6 @@ function ResultsContent() {
   const ingredients = decodeURIComponent(q);
 
   const [ready, setReady] = useState(false);
-  const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle');
 
   const result = useMemo(() => {
     const toks = tokenize(ingredients);
@@ -35,34 +33,6 @@ function ResultsContent() {
     const score = overallScore({ additives, allergens, nova });
     return { c, additives, allergens, nova, jrows, score };
   }, [ingredients]);
-
-  const saveAnalysis = async () => {
-    setSaveStatus('saving');
-    try {
-      const analysis: SavedAnalysis = {
-        id: Date.now().toString(),
-        inputText: ingredients,
-        additives: result.additives.hits,
-        allergens: result.allergens.hits,
-        nova: result.nova,
-        score: result.score,
-        createdAt: new Date().toISOString(),
-        title: `Analysis ${new Date().toLocaleDateString()}`
-      };
-
-      const saved = localStorage.getItem('saved-analyses');
-      const existing = saved ? JSON.parse(saved) : [];
-      existing.push(analysis);
-      localStorage.setItem('saved-analyses', JSON.stringify(existing));
-      
-      setSaveStatus('saved');
-      setTimeout(() => setSaveStatus('idle'), 2000);
-    } catch (error) {
-      console.error('Failed to save analysis:', error);
-      setSaveStatus('error');
-      setTimeout(() => setSaveStatus('idle'), 3000);
-    }
-  };
 
   useEffect(() => setReady(true), []);
 
@@ -84,20 +54,6 @@ function ResultsContent() {
           <p className="text-slate-400">{ingredients.slice(0, 180)}{ingredients.length > 180 ? "…" : ""}</p>
         </div>
         <div className="flex gap-2">
-          <button 
-            onClick={saveAnalysis}
-            disabled={saveStatus === 'saving'}
-            className={`px-3 py-2 rounded-md transition-colors ${
-              saveStatus === 'saved' 
-                ? 'bg-green-600 hover:bg-green-500' 
-                : 'bg-purple-600 hover:bg-purple-500'
-            } disabled:opacity-50`}
-          >
-            {saveStatus === 'saving' && 'Saving...'}
-            {saveStatus === 'saved' && 'Saved!'}
-            {saveStatus === 'error' && 'Error'}
-            {saveStatus === 'idle' && 'Save Analysis'}
-          </button>
           <button onClick={()=>window.open(`/report?q=${encodeURIComponent(ingredients)}`,"_blank")}
             className="px-3 py-2 rounded-md bg-blue-600 hover:bg-blue-500">Export PDF</button>
           <button onClick={()=>router.push("/")}

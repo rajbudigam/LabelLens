@@ -191,7 +191,7 @@ export default function TimelinePage() {
           <label htmlFor="date-slider" className="block text-lg font-medium text-white mb-4">
             Timeline: {formatDate(selectedDate)}
             {pinnedDate && (
-              <span className="ml-3 text-sm text-blue-400">📌 Pinned</span>
+              <span className="ml-3 text-sm text-blue-400">Pinned</span>
             )}
           </label>
           
@@ -231,7 +231,7 @@ export default function TimelinePage() {
                 : 'bg-slate-700 hover:bg-slate-600 text-white'
             }`}
           >
-            {pinnedDate === selectedDate ? '📌 Unpin Date' : '📌 Pin Date'}
+            {pinnedDate === selectedDate ? 'Unpin Date' : 'Pin Date'}
           </button>
           
           <button
@@ -336,7 +336,7 @@ export default function TimelinePage() {
                         className="text-blue-400 hover:text-blue-300 text-sm"
                         title="Analyze sample with this additive"
                       >
-                        🔬 Analyze
+                        Analyze
                       </button>
                     </td>
                   </tr>

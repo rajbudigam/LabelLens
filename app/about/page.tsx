@@ -28,7 +28,7 @@ export default function AboutPage() {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="bg-white/10 backdrop-blur p-4 rounded border border-white/20">
-            <h3 className="font-bold text-lg text-blue-100 mb-2">🧪 Additives Database</h3>
+            <h3 className="font-bold text-lg text-blue-100 mb-2">Additives Database</h3>
             <ul className="text-sm text-blue-200 space-y-1">
               <li>• <strong className="text-yellow-300">{DATABASE_CREDENTIALS.totalAdditives}</strong></li>
               <li>• <strong className="text-red-300">50+ high-risk</strong> additives tracked</li>
